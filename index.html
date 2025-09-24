@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food Hub</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+      background: #121212; 
+      color: #f4f4f4; 
+    }
+    header {
+      background: #e65c00; 
+      color: black;
+      padding: 1rem;
+      text-align: center;
+    }
+    .banner {
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
+      display: block;
+    }
+    section {
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
+      text-align: center;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #222; 
+      color: #e65c00;
+    }
+    .food-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .food-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 160px;
+    }
+    .food-item button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      width: 160px;
+      height: 200px;
+      background: #1e1e1e;
+      border: 2px solid #e65c00;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      color: #e65c00;
+      transition: transform 0.2s ease, background 0.3s ease, color 0.3s ease;
+    }
+    .food-item button:hover {
+      background: #e65c00;
+      color: black;
+      transform: scale(1.05);
+    }
+    .food-item img {
+      width: 120px; 
+      height: 120px;
+      object-fit: cover;
+      margin-bottom: 8px;
+      border-radius: 8px;
+      border: 2px solid #e65c00;
+    }
+
+    /* Compact quantity selector */
+    .quantity {
+      margin-top: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+    }
+    .quantity input {
+      width: 30px;
+      text-align: center;
+      border-radius: 4px;
+      border: 1px solid #e65c00;
+      background: #1e1e1e;
+      color: #f4f4f4;
+      font-size: 12px;
+      height: 24px;
+    }
+    .quantity button {
+      width: 20px;       
+      height: 24px;      
+      padding: 0;        
+      border-radius: 4px;
+      border: none;
+      background: #e65c00;
+      color: black;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 12px;
+      line-height: 1;
+    }
+
+    /* Checkout button */
+    #checkoutBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #e65c00;
+      color: black;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 14px;
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🍴 Food Hub</h1>
+    <p>Discover and enjoy your favorite foods!</p>
+  </header>
+
+  <!-- Banner image -->
+  <img class="banner" src="https://media.istockphoto.com/id/1829241109/photo/enjoying-a-brunch-together.webp?s=2048x2048&w=is&k=20&c=0UD2e_KMbkkMcx4j9ZaxGf-z1nMHxch9hi3_0BQmuAo=" alt="Delicious Food">
+
+  <section>
+    <h2>🍔 Our Food Menu</h2>
+    <div class="food-buttons">
+
+      <!-- Food Items -->
+      <div class="food-item">
+        <button>
+          <img src="https://media.istockphoto.com/id/938742222/photo/cheesy-pepperoni-pizza.webp?s=2048x2048&w=is&k=20&c=gaJCN6GbnNTjlBeuZ2PNJvarzk3-i7kP8WEmMSub8zQ=" alt="Pizza">
+          Pizza
+        </button>
+        <div class="quantity">
+          <button onclick="decrement(this)">-</button>
+          <input type="number" value="0" min="0" max="10" data-item="Pizza" data-price="120">
+          <button onclick="increment(this)">+</button>
+        </div>
+      </div>
+
+      <div class="food-item">
+        <button>
+          <img src="https://media.istockphoto.com/id/1161931223/photo/vegetarian-burger-with-chickpea-cutlet-and-vegetables-veg-concept-copy-space.jpg?s=612x612&w=0&k=20&c=OFEi7RdDEHUN5MQW88BTli9sLIOQmh8LbMz1JJXFB6I=" alt="Burger">
+          Burger
+        </button>
+        <div class="quantity">
+          <button onclick="decrement(this)">-</button>
+          <input type="number" value="0" min="0" max="10" data-item="Burger" data-price="69">
+          <button onclick="increment(this)">+</button>
+        </div>
+      </div>
+
+      <div class="food-item">
+        <button>
+          <img src="https://media.istockphoto.com/id/1190989216/photo/penne-pasta-with-white-sauce-and-truffle-italian-food.jpg?s=612x612&w=0&k=20&c=wF0K_wY4nY9op5l6zDqH_klYj5UV8CclJDWEheNI2S8=" alt="Pasta">
+          Pasta
+        </button>
+        <div class="quantity">
+          <button onclick="decrement(this)">-</button>
+          <input type="number" value="0" min="0" max="10" data-item="Pasta" data-price="150">
+          <button onclick="increment(this)">+</button>
+        </div>
+      </div>
+
+      <div class="food-item">
+        <button>
+          <img src="https://media.istockphoto.com/id/2153490093/photo/three-glasses-of-ice-cream-with-balls-decorated-on-table.jpg?s=612x612&w=0&k=20&c=LUfk-0kBVxloYyom1lTBWZ7QOPTJJQG7tPsCdHdevwg=" alt="Ice Cream">
+          Ice Cream
+        </button>
+        <div class="quantity">
+          <button onclick="decrement(this)">-</button>
+          <input type="number" value="0" min="0" max="10" data-item="Ice Cream" data-price="50">
+          <button onclick="increment(this)">+</button>
+        </div>
+      </div>
+
+      <div class="food-item">
+        <button>
+          <img src="https://media.istockphoto.com/id/1136447014/photo/chocolate-pieces.jpg?s=612x612&w=0&k=20&c=SQS17baB8UIlSg5InS6wEIsNV7leJctRSW3x2haUkj4=" alt="Chocolate">
+          Chocolate
+        </button>
+        <div class="quantity">
+          <button onclick="decrement(this)">-</button>
+          <input type="number" value="0" min="0" max="10" data-item="Chocolate" data-price="40">
+          <button onclick="increment(this)">+</button>
+        </div>
+      </div>
+
+      <!-- Indian Snacks -->
+      <div class="food-item">
+        <button>
+          <img src="https://media.istockphoto.com/id/2148933061/photo/selective-focus-samosa-spiced-potato-filled-pastry-crispy-savory-popular-indian-snack-with.jpg?s=612x612&w=0&k=20&c=HW1y3HYPa7r-YwB6wn3gktZP-1Fzw9bYKsR8D6yqQOs=" alt="Samosa">
+          Samosa
+        </button>
+        <div class="quantity">
+          <button onclick="decrement(this)">-</button>
+          <input type="number" value="0" min="0" max="10" data-item="Samosa" data-price="25">
+          <button onclick="increment(this)">+</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Checkout Button -->
+  <button id="checkoutBtn" onclick="checkout()">🛒 Checkout</button>
+
+  <footer>
+    <p>&copy; 2024 Food Hub. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function getTotalItems() {
+      const inputs = document.querySelectorAll('.quantity input');
+      let total = 0;
+      inputs.forEach(input => {
+        total += parseInt(input.value);
+      });
+      return total;
+    }
+
+    function increment(button) {
+      const input = button.previousElementSibling;
+      const currentValue = parseInt(input.value);
+      const maxValue = parseInt(input.getAttribute('max'));
+      const totalItems = getTotalItems();
+      
+      if (totalItems >= 10) {
+        alert("Error: You cannot order more than 10 items in total!");
+        return;
+      }
+      
+      if (currentValue < maxValue) {
+        input.value = currentValue + 1;
+      }
+    }
+
+    function decrement(button) {
+      const input = button.nextElementSibling;
+      const currentValue = parseInt(input.value);
+      const minValue = parseInt(input.getAttribute('min'));
+      
+      if (currentValue > minValue) {
+        input.value = currentValue - 1;
+      }
+    }
+
+    function checkout() {
+      const inputs = document.querySelectorAll('.quantity input');
+      const orderItems = [];
+      let totalAmount = 0;
+      
+      inputs.forEach(input => {
+        const quantity = parseInt(input.value);
+        if (quantity > 0) {
+          const itemName = input.getAttribute('data-item');
+          const price = parseInt(input.getAttribute('data-price'));
+          const itemTotal = quantity * price;
+          orderItems.push({
+            name: itemName,
+            quantity: quantity,
+            price: price,
+            total: itemTotal
+          });
+          totalAmount += itemTotal;
+        }
+      });
+      
+      if (orderItems.length === 0) {
+        alert("Please select at least one item to checkout!");
+        return;
+      }
+      
+      // Generate bill page
+      generateBillPage(orderItems, totalAmount);
+    }
+
+    function generateBillPage(orderItems, totalAmount) {
+      const serviceTax = totalAmount * 0.069; // 6.9%
+      const gst = totalAmount * 0.10; // 10%
+      const finalTotal = totalAmount + serviceTax + gst;
+      
+      const billWindow = window.open('', '_blank');
+      
+      const billHTML = `
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Food Hub - Bill</title>
+          <style>
+            body {
+              font-family: Arial, sans-serif;
+              margin: 0;
+              padding: 20px;
+              background: #121212;
+              color: #f4f4f4;
+              line-height: 1.6;
+            }
+            .bill-container {
+              max-width: 600px;
+              margin: 0 auto;
+              background: #1e1e1e;
+              border: 2px solid #e65c00;
+              border-radius: 12px;
+              padding: 30px;
+            }
+            h1 {
+              color: #e65c00;
+              text-align: center;
+              margin-bottom: 30px;
+              border-bottom: 2px solid #e65c00;
+              padding-bottom: 10px;
+            }
+            .bill-item {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 10px 0;
+              border-bottom: 1px solid #333;
+            }
+            .item-details {
+              flex: 1;
+            }
+            .item-name {
+              font-weight: bold;
+              color: #e65c00;
+            }
+            .item-price {
+              font-size: 14px;
+              color: #ccc;
+            }
+            .quantity {
+              color: #f4f4f4;
+              font-weight: bold;
+              margin: 0 15px;
+            }
+            .total {
+              color: #e65c00;
+              font-weight: bold;
+            }
+            .summary-section {
+              margin-top: 20px;
+              padding: 15px;
+              background: #2a2a2a;
+              border-radius: 8px;
+              border: 1px solid #444;
+            }
+            .summary-item {
+              display: flex;
+              justify-content: space-between;
+              padding: 5px 0;
+              color: #f4f4f4;
+            }
+            .summary-item.subtotal {
+              font-weight: bold;
+              border-bottom: 1px solid #444;
+              padding-bottom: 10px;
+              margin-bottom: 10px;
+            }
+            .tax-item {
+              color: #ccc;
+              font-size: 14px;
+            }
+            .grand-total {
+              margin-top: 15px;
+              padding: 15px;
+              background: #e65c00;
+              color: black;
+              text-align: center;
+              border-radius: 8px;
+              font-size: 18px;
+              font-weight: bold;
+            }
+            .back-btn {
+              display: block;
+              width: 100%;
+              padding: 12px;
+              margin-top: 20px;
+              background: #333;
+              color: #e65c00;
+              border: 2px solid #e65c00;
+              border-radius: 8px;
+              font-size: 16px;
+              cursor: pointer;
+              text-decoration: none;
+              text-align: center;
+            }
+            .back-btn:hover {
+              background: #e65c00;
+              color: black;
+            }
+          </style>
+        </head>
+        <body>
+          <div class="bill-container">
+            <h1>🧾 Food Hub Bill</h1>
+            ${orderItems.map(item => `
+              <div class="bill-item">
+                <div class="item-details">
+                  <div class="item-name">${item.name}</div>
+                  <div class="item-price">₹${item.price} each</div>
+                </div>
+                <div class="quantity">× ${item.quantity}</div>
+                <div class="total">₹${item.total}</div>
+              </div>
+            `).join('')}
+            
+            <div class="summary-section">
+              <div class="summary-item subtotal">
+                <span>Subtotal:</span>
+                <span>₹${totalAmount.toFixed(2)}</span>
+              </div>
+              <div class="summary-item tax-item">
+                <span>Service Tax (6.9%):</span>
+                <span>₹${serviceTax.toFixed(2)}</span>
+              </div>
+              <div class="summary-item tax-item">
+                <span>GST (10%):</span>
+                <span>₹${gst.toFixed(2)}</span>
+              </div>
+            </div>
+            
+            <div class="grand-total">
+              Grand Total: ₹${finalTotal.toFixed(2)}
+            </div>
+            <button class="back-btn" onclick="window.close()">← Back to Menu</button>
+          </div>
+        </body>
+        </html>
+      `;
+      
+      billWindow.document.write(billHTML);
+      billWindow.document.close();
+    }
+  </script>
+</body>
+</html>
